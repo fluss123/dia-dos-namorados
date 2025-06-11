@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Dia dos Namorados</title>
+     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png" type="image/png">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;700&display=swap');
+
+
+        .heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Ajuste para cobrir a altura desejada, ou 100vh para a tela inteira */
+            pointer-events: none;
+            /* Permite que cliques passem através do contêiner */
+            overflow: hidden;
+            /* Garante que os corações não ultrapassem o limite */
+            z-index: 9999;
+            /* Garante que os corações fiquem acima de outros elementos */
+        }
+
+        .heart {
+            position: absolute;
+            color: #E91E63;
+            /* Cor dos corações, combinando com o tema */
+            font-size: 2em;
+            /* Tamanho inicial dos corações */
+            opacity: 0;
+            animation: fall linear infinite;
+            transform: translateY(-20px) scale(0);
+            /* Começa acima da tela e pequeno */
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20px) scale(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0px) scale(1);
+            }
+
+            80% {
+                opacity: 1;
+                transform: translateY(calc(100vh - 50px)) scale(0.8);
+                /* Cai quase até o final da tela */
+            }
+
+            100% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family: 'Montserrat', sans-serif;
+
+            background-color: #fce4ec;
+
+            /* Rosa claro como fundo geral */
+
+            color: #333;
+
+            overflow-x: hidden;
+
+            /* Oculta a barra de rolagem horizontal */
+
+            overflow-y: scroll;
+
+            /* Mantém a barra de rolagem vertical */
+
+            scroll-snap-type: y mandatory;
+
+            /* Força o "snap" para as seções na vertical */
+
+            scroll-behavior: smooth;
+
+            /* Suaviza a rolagem para os cliques e snaps */
+
+        }
+
+
+
+        /* Cada seção ocupa a tela inteira e se encaixa na rolagem */
+
+        section {
+
+            width: 100vw;
+
+            height: 100vh;
+
+            /* Cada seção ocupa a altura total da viewport */
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            scroll-snap-align: start;
+
+            /* Alinha o início de cada seção ao topo da viewport */
+
+            position: relative;
+
+            /* Essencial para o posicionamento absoluto do .scroll-indicator */
+
+            flex-shrink: 0;
+
+            /* Impede que as seções encolham */
+
+        }
+
+
+
+        /* Página Inicial */
+
+        .hero-section {
+
+            /* Fundo gradiente minimalista para a seção inicial */
+
+            background: linear-gradient(to bottom right, #ffebee, #fce4ec, #ffcdd2);
+
+            color: #D32F2F;
+
+            /* Vermelho escuro para o texto inicial */
+
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+            /* Sombra mais sutil */
+
+        }
+
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            text-align: center;
+
+        }
+
+
+
+        .hero-content h1 {
+
+            font-family: 'Dancing Script', cursive;
+
+            font-size: 5em;
+
+            margin-bottom: 10px;
+
+            color: #E91E63;
+
+            /* Rosa avermelhado para combinar */
+
+            animation: textPop 1s ease-out forwards;
+
+            animation-delay: 0.5s;
+
+        }
+
+
+
+        .hero-content p {
+
+            font-size: 1.8em;
+
+            font-weight: 700;
+
+            color: #C2185B;
+
+            /* Rosa escuro para combinar */
+
+            margin-top: 0;
+
+            animation: textFadeIn 1.5s ease-out forwards;
+
+            animation-delay: 1s;
+
+        }
+
+
+
+        .scroll-indicator {
+
+            position: static;
+
+            bottom: 40px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            z-index: 2;
+
+            font-size: 1.2em;
+
+            color: #E91E63;
+
+            animation: bounce 2s infinite;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            padding: 10px 20px;
+
+            border-radius: 25px;
+
+            background-color: rgba(255, 255, 255, 0.5);
+
+            backdrop-filter: blur(5px);
+
+            transition: background-color 0.3s ease, transform 0.3s ease;
+
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+
+        .scroll-indicator:hover {
+
+            background-color: rgba(255, 255, 255, 0.7);
+
+            transform: translateX(-50%) translateY(-5px);
+
+        }
+
+
+
+        /* Seção da Mensagem */
+
+        .message-section {
+
+            background-color: #fff;
+
+            color: #555;
+
+            padding: 80px 20px;
+
+            text-align: center;
+
+            justify-content: flex-start;
+
+            padding: 40px 20px 80px 20px;
+
+        }
+
+
+
+        .message-section h2 {
+
+            font-family: 'Dancing Script', cursive;
+
+            font-size: 3.5em;
+
+            color: #D32F2F;
+
+            margin-bottom: 40px;
+
+        }
+
+
+
+        .message-box {
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+            padding: 40px;
+
+            background-color: #fff;
+
+            border-radius: 15px;
+
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+            text-align: left;
+
+            line-height: 1.8;
+
+            font-size: 1.1em;
+
+            position: relative;
+
+            color: #555;
+
+        }
+
+
+
+        .message-box::before {
+
+            content: '❤️';
+
+            position: absolute;
+
+            top: -20px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 3em;
+
+            color: #E91E63;
+
+            z-index: 1;
+
+            animation: heartBeat 1.5s infinite;
+
+        }
+
+
+
+        /* Seção da Galeria */
+
+        .gallery-section {
+
+            background-color: #fce4ec;
+
+            text-align: center;
+
+            padding: 60px 0;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .gallery-section h2 {
+
+            font-family: 'Dancing Script', cursive;
+
+            font-size: 3em;
+
+            color: #C2185B;
+
+            margin-bottom: 40px;
+
+        }
+
+
+
+        /* Estilos do Swiper */
+
+        .swiper-container {
+
+            width: 90%;
+
+            max-width: 580px;
+            /* Reduzi um pouco a largura máxima para se adequar melhor às imagens */
+
+            height: 700px;
+            /* Aumentei a altura para mais espaço vertical das imagens */
+
+            margin: 0 auto;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
+            background-color: #fff;
+
+        }
+
+
+
+        .swiper-slide {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background-color: #f0f0f0;
+            height: auto;
+
+        }
+
+
+
+        .swiper-slide img {
+
+            width: 100%;
+
+            /* Ajuste para que a imagem ocupe 100% da largura do slide */
+
+            height: 100%;
+
+            /* Ajuste para que a imagem ocupe 100% da altura do slide */
+
+            object-fit: cover;
+            /* Altera para 'cover' para preencher o contêiner e cortar se necessário */
+
+            display: block;
+
+        }
+
+
+
+        /* Estilos para as setas de navegação do Swiper */
+
+        .swiper-button-next,
+
+        .swiper-button-prev {
+
+            color: #E91E63;
+
+            --swiper-navigation-size: 30px;
+
+        }
+
+
+
+        /* Estilos para a paginação (bolinhas) */
+
+        .swiper-pagination {
+            bottom: 100px;
+            /* Altere este valor para mover a paginação mais para cima (valores menores) ou mais para baixo (valores maiores) */
+            position: absolute;
+            /* Garante que a propriedade 'bottom' funcione */
+            width: 100%;
+            /* Garante que o contêiner de paginação ocupe toda a largura */
+        }
+
+        .swiper-pagination-bullet {
+
+            background-color: #C2185B;
+
+            opacity: 0.6;
+
+        }
+
+
+
+        .swiper-pagination-bullet-active {
+
+            background-color: #E91E63;
+
+            opacity: 1;
+
+        }
+
+
+
+
+
+        /* Rodapé */
+
+        .footer {
+
+            background-color: #D32F2F;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            font-size: 0.9em;
+
+            width: 100vw;
+
+            flex-shrink: 0;
+
+            scroll-snap-align: start;
+
+        }
+
+
+
+        .footer p {
+
+            margin: 0;
+
+        }
+
+
+
+        /* Animações */
+
+        @keyframes fadeInBackground {
+
+            from {
+
+                opacity: 0;
+
+            }
+
+
+
+            to {
+
+                opacity: 1;
+
+            }
+
+        }
+
+
+
+        @keyframes textPop {
+
+            from {
+
+                transform: scale(0.5);
+
+                opacity: 0;
+
+            }
+
+
+
+            to {
+
+                transform: scale(1);
+
+                opacity: 1;
+
+            }
+
+        }
+
+
+
+        @keyframes textFadeIn {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(20px);
+
+            }
+
+
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+
+        @keyframes bounce {
+
+
+
+            0%,
+
+            20%,
+
+            50%,
+
+            80%,
+
+            100% {
+
+                transform: translateY(0);
+
+            }
+
+
+
+            40% {
+
+                transform: translateY(-10px);
+
+            }
+
+
+
+            60% {
+
+                transform: translateY(-5px);
+
+            }
+
+        }
+
+
+
+        @keyframes heartBeat {
+
+            0% {
+
+                transform: translateX(-50%) scale(1);
+
+            }
+
+
+
+            25% {
+
+                transform: translateX(-50%) scale(1.1);
+
+            }
+
+
+
+            50% {
+
+                transform: translateX(-50%) scale(1);
+
+            }
+
+
+
+            75% {
+
+                transform: translateX(-50%) scale(1.05);
+
+            }
+
+
+
+            100% {
+
+                transform: translateX(-50%) scale(1);
+
+            }
+
+        }
+
+
+
+        /* Responsividade */
+
+        @media (max-width: 768px) {
+
+            .hero-content h1 {
+
+                font-size: 3.5em;
+
+            }
+
+
+
+            .hero-content p {
+
+                font-size: 1.4em;
+
+            }
+
+
+
+            .message-section h2 {
+
+                font-size: 2.5em;
+
+            }
+
+
+
+            .message-box {
+
+                padding: 30px;
+
+            }
+
+
+
+            .swiper-container {
+
+                height: 300px;
+
+                /* Ajuste a altura do carrossel para mobile */
+
+                width: 95%;
+
+            }
+
+
+
+            .scroll-indicator {
+
+                bottom: 30px;
+
+                /* Ajuste para telas menores */
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="heart-container"></div>
+
+    <section class="hero-section" id="hero">
+        <div class="hero-content">
+            <h1>Brenda & Gabriel</h1>
+            <p>Feliz Dia dos Namorados!</p>
+        </div>
+        <!--<a href="#message" class="scroll-indicator">Role para ver mais ❤️</a>-->
+    </section>
+
+    <section id="message" class="message-section">
+        <h2>Uma Mensagem de Amor</h2>
+        <div class="message-box">
+            <p>Meu amor Gabriel,</p>
+            <p>Neste Dia dos Namorados, quero celebrar cada momento que passamos juntos. Cada riso, cada abraço, cada
+                aventura. Você ilumina minha vida de uma forma que palavras não podem descrever.</p>
+            <p>Sou grata por ter você ao meu lado, compartilhando sonhos, superando desafios e construindo uma história
+                linda. Seu carinho e sua presença fazem meus dias mais felizes e completos.</p>
+            <p>Que o nosso amor continue crescendo e nos fortalecendo a cada dia. Você é o meu melhor amigo, meu
+                confidente e o amor da minha vida.</p>
+            <p>Com todo o meu amor,</p>
+            <p>Brenda</p>
+        </div>
+
+        <!--<a href="#gallery" class="scroll-indicator"
+            style="position: static; margin-top: 40px; background-color: rgb(237, 181, 191);">Role para ver mais ❤️</a>-->
+
+    </section>
+
+
+    <section id="gallery" class="gallery-section">
+        <h2>Nossos Momentos Inesquecíveis</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="1.jpeg" alt="Casal na praia"></div>
+                <div class="swiper-slide"><img src="2.jpeg" alt="Casal se beijando na montanha"></div>
+                <div class="swiper-slide"><img src="3.jpeg" alt="Casal abraçado sob a luz"></div>
+                <div class="swiper-slide"><img src="4.jpeg" alt="Casal se beijando de perto"></div>
+                <div class="swiper-slide"><img src="5.jpeg" alt="Casal em Porto de Galinhas"></div>
+                <div class="swiper-slide"><img src="6.jpeg" alt="Casal pôr do sol"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <!--
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            -->
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Amor da Brenda para o Gabriel. Feito com muito carinho! ❤️</p>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'horizontal',
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'slide',
+            speed: 800,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 1,
+            spaceBetween: 0,
+            centeredSlides: true,
+        });
+    </script>
+
+    <script>
+        const heartContainer = document.querySelector('.heart-container');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️'; // Caractere de coração
+
+            // Posição aleatória na parte superior da tela
+            heart.style.left = Math.random() * 100 + 'vw';
+            // Tamanho aleatório
+            heart.style.fontSize = Math.random() * 1.5 + 1 + 'em'; // Entre 1em e 2.5em
+            // Duração da animação aleatória
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's'; // Entre 5s e 8s
+            // Atraso de animação aleatório para que não caiam todos juntos
+            heart.style.animationDelay = Math.random() * 2 + 's';
+
+            heartContainer.appendChild(heart);
+
+            // Remover o coração após a animação para otimização
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        // Gerar corações em intervalos regulares
+        setInterval(createHeart, 300); // Cria um novo coração a cada 300ms (ajuste conforme a densidade desejada)
+    </script>
+
+</body>
+
+</html>
