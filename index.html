@@ -375,7 +375,7 @@
             max-width: 580px;
             /* Reduzi um pouco a largura máxima para se adequar melhor às imagens */
 
-            height: 700px;
+            height: 70vh;
             /* Aumentei a altura para mais espaço vertical das imagens */
 
             margin: 0 auto;
@@ -695,7 +695,7 @@
 
             .swiper-container {
 
-                height: 300px;
+                height: 50vh;
 
                 /* Ajuste a altura do carrossel para mobile */
 
@@ -713,6 +713,13 @@
 
             }
 
+            /* Correção para a seção da mensagem */
+            .message-section {
+                height: auto; /* Permite que a altura se ajuste ao conteúdo */
+                padding: 40px 20px; /* Ajusta o padding para telas menores */
+                justify-content: center; /* Centraliza o conteúdo verticalmente */
+            }
+
         }
     </style>
 </head>
@@ -726,8 +733,7 @@
             <h1>Brenda & Gabriel</h1>
             <p>Feliz Dia dos Namorados!</p>
         </div>
-        <!--<a href="#message" class="scroll-indicator">Role para ver mais ❤️</a>-->
-    </section>
+        </section>
 
     <section id="message" class="message-section">
         <h2>Uma Mensagem de Amor</h2>
@@ -743,10 +749,7 @@
             <p>Brenda</p>
         </div>
 
-        <!--<a href="#gallery" class="scroll-indicator"
-            style="position: static; margin-top: 40px; background-color: rgb(237, 181, 191);">Role para ver mais ❤️</a>-->
-
-    </section>
+        </section>
 
 
     <section id="gallery" class="gallery-section">
@@ -761,12 +764,7 @@
                 <div class="swiper-slide"><img src="6.jpeg" alt="Casal pôr do sol"></div>
             </div>
             <div class="swiper-pagination"></div>
-            <!--
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-            -->
-
-        </div>
+            </div>
     </section>
 
     <footer class="footer">
